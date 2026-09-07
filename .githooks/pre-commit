@@ -1,0 +1,4 @@
+#!/bin/sh
+# Catches invented data before it reaches a commit, not after a build.
+# Enable once per clone: git config core.hooksPath .githooks
+exec node scripts/check-realdata.mjs
