@@ -63,6 +63,11 @@ export function render(cb: CostBreakdown, anchor: Element): void {
   anchor.insertAdjacentElement("beforebegin", el);
 }
 
+/** True when our badge is in the document — Coinbase re-rendering takes it away. */
+export function hasBadge(): boolean {
+  return document.querySelector(BADGE_SELECTOR) !== null;
+}
+
 export function remove(): void {
   document.querySelector(BADGE_SELECTOR)?.remove();
 }
