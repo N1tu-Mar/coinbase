@@ -14,6 +14,32 @@ import { FEE_TIER_FROM_RESEARCH } from "./generated/fee-tier.js";
 export const PRODUCTS: readonly ProductId[] = ["BTC-USD", "ETH-USD", "SOL-USD"];
 
 /**
+ * Text that identifies each product on the preview screen. Coinbase renders the
+ * display name ("Bitcoin") far more often than the symbol, so both are matched.
+ *
+ * source: Coinbase asset display names, as used throughout coinbase.com.
+ * TODO R3 — confirm the exact wording against research/dom/ and add anything the
+ * real captures show. Nothing here is a price, a rate or a fee.
+ */
+export const PRODUCT_ALIASES: Readonly<Record<ProductId, readonly string[]>> = {
+  "BTC-USD": ["BTC-USD", "BTC", "Bitcoin"],
+  "ETH-USD": ["ETH-USD", "ETH", "Ethereum"],
+  "SOL-USD": ["SOL-USD", "SOL", "Solana"],
+};
+
+/**
+ * Assets whose names contain one of the aliases above. If any of these appears,
+ * the text is ambiguous and scrape() must return null rather than pick a
+ * product (PROMPT.md rule 2.5).
+ */
+export const AMBIGUOUS_ASSET_NAMES: readonly string[] = [
+  "Bitcoin Cash",
+  "Wrapped Bitcoin",
+  "Ethereum Classic",
+  "Ethereum Name Service",
+];
+
+/**
  * source: research/endpoints.md, RECOMMENDED section (captured 2026-09-07).
  * Unauthenticated, returns flat `bid`/`ask`, sends `access-control-allow-origin: *`.
  */
