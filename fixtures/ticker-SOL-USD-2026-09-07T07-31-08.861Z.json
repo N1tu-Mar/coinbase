@@ -1,0 +1,15 @@
+{
+  "source": "https://api.exchange.coinbase.com/products/SOL-USD/ticker",
+  "capturedAt": "2026-09-07T07:31:08.861Z",
+  "status": 200,
+  "body": {
+    "ask": "104.97",
+    "bid": "104.95",
+    "volume": "818131.34755681",
+    "trade_id": 352059786,
+    "price": "104.95",
+    "size": "0.024443",
+    "time": "2026-09-07T07:31:07.364818514Z",
+    "rfq_volume": "27490.711630"
+  }
+}

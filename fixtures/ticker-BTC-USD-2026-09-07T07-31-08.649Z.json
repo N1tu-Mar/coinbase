@@ -1,0 +1,15 @@
+{
+  "source": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+  "capturedAt": "2026-09-07T07:31:08.649Z",
+  "status": 200,
+  "body": {
+    "ask": "79458.09",
+    "bid": "79458.08",
+    "volume": "2437.54444297",
+    "trade_id": 1089754711,
+    "price": "79458.08",
+    "size": "0.0000303",
+    "time": "2026-09-07T07:31:07.450773679Z",
+    "rfq_volume": "20.665322"
+  }
+}

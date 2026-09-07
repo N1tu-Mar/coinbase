@@ -14,9 +14,7 @@ const cache = new Map<ProductId, CacheEntry>();
  * Fetch bid/ask for a product from the endpoint named RECOMMENDED in
  * research/endpoints.md, compute mid, and attach provenance.
  *
- * BLOCKED ON R1: the field names holding bid and ask (and whether they arrive
- * as strings) come from that file. Until it lands, TICKER_URL_TEMPLATE is empty
- * and this throws rather than guessing a response shape.
+ * Endpoint and response shape: research/endpoints.md (captured 2026-09-07).
  */
 export async function getTicker(productId: ProductId): Promise<Ticker> {
   const hit = cache.get(productId);
@@ -37,10 +35,7 @@ export async function getTicker(productId: ProductId): Promise<Ticker> {
 
 /**
  * Response shape -> Ticker. Exported so tests can run it over the recorded
- * responses in fixtures/ without touching the network.
- *
- * BLOCKED ON R1 for the field names. Coinbase returns numeric fields as strings
- * on at least one of the candidate endpoints, so both are coerced.
+ * responses in fixtures/ and research/captures/ without touching the network.
  */
 export function parseTicker(
   body: unknown,
@@ -58,7 +53,8 @@ export function parseTicker(
 function readBidAsk(body: unknown): { bid: number; ask: number } | null {
   if (typeof body !== "object" || body === null) return null;
   const record = body as Record<string, unknown>;
-  // TODO R1 — replace this with the exact field path from research/endpoints.md.
+  // source: research/endpoints.md field map — `bid` and `ask` are top-level and
+  // arrive as strings. `price` is the last trade, not the mid: never read it.
   const bid = toNumber(record["bid"]);
   const ask = toNumber(record["ask"]);
   if (bid === null || ask === null) return null;

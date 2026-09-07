@@ -14,11 +14,11 @@ import { FEE_TIER_FROM_RESEARCH } from "./generated/fee-tier.js";
 export const PRODUCTS: readonly ProductId[] = ["BTC-USD", "ETH-USD", "SOL-USD"];
 
 /**
- * source: research/endpoints.md -> the line marked `RECOMMENDED:`
- * TODO R1 — leave "" until that file exists. getTicker() refuses to fetch while
- * this is empty, so no request is ever sent to a guessed URL.
+ * source: research/endpoints.md, RECOMMENDED section (captured 2026-09-07).
+ * Unauthenticated, returns flat `bid`/`ask`, sends `access-control-allow-origin: *`.
  */
-export const TICKER_URL_TEMPLATE: string = "";
+export const TICKER_URL_TEMPLATE: string =
+  "https://api.exchange.coinbase.com/products/{productId}/ticker";
 
 export function TICKER_URL(productId: ProductId): string {
   if (!TICKER_URL_TEMPLATE) {

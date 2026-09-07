@@ -15,8 +15,8 @@
     "service_worker": "background.js",
     "type": "module"
   },
-  // TODO R1 + R5 — add the chosen ticker endpoint origin. Stays empty until
-  // research/endpoints.md names a RECOMMENDED endpoint; no guessed hosts.
-  "host_permissions": [],
+  // source: research/endpoints.md RECOMMENDED endpoint. TODO R5 — confirm this
+  // is all research/mv3-notes.md requires for a service-worker fetch.
+  "host_permissions": ["https://api.exchange.coinbase.com/*"],
   "permissions": []
 }

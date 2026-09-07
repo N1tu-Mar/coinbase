@@ -8,7 +8,7 @@
     "build": "node build.mjs",
     "typecheck": "tsc --noEmit",
     "check:realdata": "node scripts/check-realdata.mjs",
-    "capture:fixtures": "node --experimental-strip-types scripts/capture-fixtures.ts",
+    "capture:fixtures": "npm run build && npx esbuild scripts/capture-fixtures.ts --bundle --platform=node --format=esm --outfile=dist/capture-fixtures.mjs --log-level=warning && node dist/capture-fixtures.mjs",
     "test": "npm run check:realdata && npm run typecheck && vitest run"
   },
   "devDependencies": {

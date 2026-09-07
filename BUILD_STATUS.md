@@ -10,8 +10,12 @@ Never edits `research/`.
       produces a loadable unpacked extension in `dist/` that does nothing.
 - [x] **P1 Calculator** — `lib/calc.ts` implemented per PROMPT.md 2.4 (pure, no
       I/O, no `Date.now`). Tests are `todo` pending real inputs — see blockers.
-- [ ] **P2 Price fetcher** — `background/price.ts` and
-      `scripts/capture-fixtures.ts` are written but inert. **Blocked on R1.**
+- [x] **P2 Price fetcher** — `background/price.ts` fetches
+      `api.exchange.coinbase.com/products/{id}/ticker` (R1 RECOMMENDED), coerces
+      the string `bid`/`ask`, computes `mid`, caches 2s per product.
+      `scripts/capture-fixtures.ts` has written three live fixtures.
+      `tests/price.test.ts` parses all six recorded responses (3 fixtures +
+      3 research captures) and asserts `mid === (bid+ask)/2`.
 - [ ] **P3 Detect + scrape** — `content/detect.ts`, `content/scrape.ts` written
       but inert (empty selectors). **Blocked on R3.**
 - [ ] **P4 Badge + wiring** — `content/badge.ts` and `content/index.ts` written.
@@ -25,11 +29,10 @@ Never edits `research/`.
 
 | ID | Needed for | What is missing |
 | -- | ---------- | --------------- |
-| R1 | P2, `tests/calc.test.ts`, `tests/price.test.ts` | `research/endpoints.md` with a `RECOMMENDED:` endpoint and the exact field names holding bid/ask. `config.TICKER_URL_TEMPLATE` stays `""` until then, so nothing is fetched from a guessed URL. |
 | R2 | P1 tests, badge fee-tier line | `research/fees.json`. `build.mjs` generates `src/generated/fee-tier.ts` as `null` while it is absent, so the badge never renders. |
 | R3 | P3, P1 tests | `research/dom/*.html` and `research/selectors.md`. All six entries in `config.SELECTORS` are `""`. |
 | R4 | P4 | `research/deeplinks.md`. `config.ADVANCED_URL_TEMPLATE` stays `""`. |
-| R5 | manifest | `research/mv3-notes.md`. `host_permissions` is `[]` and `content_scripts.matches` is the broad `https://www.coinbase.com/*` — both marked `// TODO R5` in `src/manifest.json`. |
+| R5 | manifest | `research/mv3-notes.md`. `content_scripts.matches` is still the broad `https://www.coinbase.com/*`, marked `// TODO R5`. `host_permissions` now holds the R1 host but wants confirming against the MV3 notes. |
 
 No number in `src/` was typed by hand. Every research-dependent constant is an
 empty string or `null`, and `content/index.ts` calls `isConfigured()` before it

@@ -1,8 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { parseTicker } from "../src/background/price.js";
-import { fixtures } from "./real-data.js";
+import { captures, fixtures } from "./real-data.js";
 
-const recorded = fixtures();
+// Both sources are real: fixtures/ is written by scripts/capture-fixtures.ts,
+// research/captures/ by the research agent's live curl. Only responses from the
+// RECOMMENDED endpoint are parsed here — the others document rejected shapes.
+const recorded = [...fixtures(), ...captures()].filter((r) =>
+  r.source.startsWith("https://api.exchange.coinbase.com/products/"),
+);
 
 describe("parseTicker over recorded live responses", () => {
   it.skipIf(recorded.length > 0)("has no fixtures yet — blocked on R1", () => {

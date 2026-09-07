@@ -1,0 +1,15 @@
+{
+  "source": "https://api.exchange.coinbase.com/products/ETH-USD/ticker",
+  "capturedAt": "2026-09-07T07:31:08.840Z",
+  "status": 200,
+  "body": {
+    "ask": "2490.34",
+    "bid": "2490.1",
+    "volume": "46133.07115783",
+    "trade_id": 841018500,
+    "price": "2490.34",
+    "size": "0.00913595",
+    "time": "2026-09-07T07:31:06.114868108Z",
+    "rfq_volume": "590.184736"
+  }
+}
