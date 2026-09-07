@@ -18,7 +18,7 @@ export const PRODUCTS: readonly ProductId[] = ["BTC-USD", "ETH-USD", "SOL-USD"];
  * TODO R1 — leave "" until that file exists. getTicker() refuses to fetch while
  * this is empty, so no request is ever sent to a guessed URL.
  */
-export const TICKER_URL_TEMPLATE = "";
+export const TICKER_URL_TEMPLATE: string = "";
 
 export function TICKER_URL(productId: ProductId): string {
   if (!TICKER_URL_TEMPLATE) {
@@ -31,7 +31,7 @@ export function TICKER_URL(productId: ProductId): string {
  * source: research/deeplinks.md — verified in a browser, not assumed.
  * TODO R4 — leave "" until that file exists.
  */
-export const ADVANCED_URL_TEMPLATE = "";
+export const ADVANCED_URL_TEMPLATE: string = "";
 
 export function ADVANCED_URL(productId: ProductId): string {
   if (!ADVANCED_URL_TEMPLATE) {
