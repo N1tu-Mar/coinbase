@@ -1,6 +1,13 @@
 import type { CostBreakdown } from "../lib/types.js";
 
-const BADGE_ATTR = "data-spreadcheck";
+/**
+ * Marks our own injected element. Exported so content/detect.ts can tell our
+ * mutations apart from Coinbase's — inserting the badge into the observed
+ * subtree would otherwise retrigger the observer forever.
+ */
+export const BADGE_ATTR = "data-spreadcheck";
+
+export const BADGE_SELECTOR = `[${BADGE_ATTR}]`;
 
 const usd = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -57,5 +64,5 @@ export function render(cb: CostBreakdown, anchor: Element): void {
 }
 
 export function remove(): void {
-  document.querySelector(`[${BADGE_ATTR}]`)?.remove();
+  document.querySelector(BADGE_SELECTOR)?.remove();
 }
