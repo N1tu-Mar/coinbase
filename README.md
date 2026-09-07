@@ -76,11 +76,22 @@ link only in `research/deeplinks.md`.
 npm test   # check:realdata, then tsc --noEmit, then vitest
 ```
 
-`npm run check:realdata` fails the build on banned identifiers (`mock`, `fake`,
-`sample`, `dummy`, `placeholder`, `faker`, `Math.random`) anywhere in `src/`,
-`tests/`, `fixtures/` or `scripts/`, on any `fixtures/*.json` lacking `source`
-and `capturedAt`, and on any numeric literal in `src/config.ts`. To run it
-before every commit:
+`npm run check:realdata` fails the build on:
+
+- banned identifiers anywhere in `src/`, `tests/`, `fixtures/`, `scripts/` or
+  `research/` — `research/dom/` and `research/captures/` are exempt, because
+  they hold pages and API responses recorded verbatim and a real Coinbase page
+  legitimately contains those words;
+- any `fixtures/*.json` or `research/captures/*.json` lacking `source` and
+  `capturedAt`;
+- any numeric literal in `src/config.ts`;
+- a `research/fees.json` whose rates are not traceable to an official Coinbase
+  page: the source must be an https URL on `coinbase.com`, `research/fees.md`
+  must cite that same URL, the capture date must parse and not be in the
+  future, and the rates must be decimal fractions in a plausible band — so a
+  percentage transcribed without dividing by 100 is caught.
+
+To run it before every commit:
 
 ```sh
 git config core.hooksPath .githooks

@@ -3,7 +3,10 @@
   "name": "spread-check",
   "version": "0.0.1",
   "description": "Shows the all-in cost of a Coinbase Simple trade before you confirm it.",
-  // TODO R5 — narrow to the exact trade-page pattern from research/mv3-notes.md.
+  // source: research/mv3-notes.md §2 (read 2026-09-07). www host only, https
+  // only, path /* because the Simple buy flow is client-side routed — a path
+  // filter would miss sessions that never do a full page load. The narrowing
+  // happens in content/detect.ts instead.
   "content_scripts": [
     {
       "matches": ["https://www.coinbase.com/*"],
@@ -15,8 +18,9 @@
     "service_worker": "background.js",
     "type": "module"
   },
-  // source: research/endpoints.md RECOMMENDED endpoint. TODO R5 — confirm this
-  // is all research/mv3-notes.md requires for a service-worker fetch.
+  // source: research/endpoints.md RECOMMENDED endpoint, confirmed sufficient by
+  // research/mv3-notes.md §1. The trailing /* is required pattern syntax; the
+  // path is ignored for host permissions.
   "host_permissions": ["https://api.exchange.coinbase.com/*"],
   "permissions": []
 }
