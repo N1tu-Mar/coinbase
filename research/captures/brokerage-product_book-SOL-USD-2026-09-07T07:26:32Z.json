@@ -1,0 +1,27 @@
+{
+  "source": "https://api.coinbase.com/api/v3/brokerage/market/product_book?product_id=SOL-USD&limit=1",
+  "capturedAt": "2026-09-07T07:26:32Z",
+  "status": 200,
+  "body": {
+    "pricebook": {
+      "product_id": "SOL-USD",
+      "bids": [
+        {
+          "price": "105.09",
+          "size": "12.65987496"
+        }
+      ],
+      "asks": [
+        {
+          "price": "105.11",
+          "size": "64.3387"
+        }
+      ],
+      "time": "2026-09-07T07:26:31.988453Z"
+    },
+    "last": "105.1",
+    "mid_market": "105.1",
+    "spread_bps": "1.902768528209",
+    "spread_absolute": "0.02"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "spread-check",
+  "version": "0.0.1",
+  "description": "Shows the all-in cost of a Coinbase Simple trade before you confirm it.",
+  // TODO R5 — narrow to the exact trade-page pattern from research/mv3-notes.md.
+  "content_scripts": [
+    {
+      "matches": ["https://www.coinbase.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  // TODO R1 + R5 — add the chosen ticker endpoint origin. Stays empty until
+  // research/endpoints.md names a RECOMMENDED endpoint; no guessed hosts.
+  "host_permissions": [],
+  "permissions": []
+}

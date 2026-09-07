@@ -1,0 +1,27 @@
+{
+  "source": "https://api.coinbase.com/api/v3/brokerage/market/product_book?product_id=ETH-USD&limit=1",
+  "capturedAt": "2026-09-07T07:26:32Z",
+  "status": 200,
+  "body": {
+    "pricebook": {
+      "product_id": "ETH-USD",
+      "bids": [
+        {
+          "price": "2494.4",
+          "size": "0.05"
+        }
+      ],
+      "asks": [
+        {
+          "price": "2494.41",
+          "size": "3.73995"
+        }
+      ],
+      "time": "2026-09-07T07:26:31.984647Z"
+    },
+    "last": "2494.405",
+    "mid_market": "2494.405",
+    "spread_bps": "0.040089640436",
+    "spread_absolute": "0.01"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source": "https://api.coinbase.com/api/v3/brokerage/market/product_book?product_id=BTC-USD&limit=1",
+  "capturedAt": "2026-09-07T07:26:32Z",
+  "status": 200,
+  "body": {
+    "pricebook": {
+      "product_id": "BTC-USD",
+      "bids": [
+        {
+          "price": "79519.63",
+          "size": "0.00002934"
+        }
+      ],
+      "asks": [
+        {
+          "price": "79519.64",
+          "size": "0.14355837"
+        }
+      ],
+      "time": "2026-09-07T07:26:31.069959Z"
+    },
+    "last": "79519.635",
+    "mid_market": "79519.635",
+    "spread_bps": "0.001257550965",
+    "spread_absolute": "0.01"
+  }
+}
