@@ -17,9 +17,10 @@ Reasons, in order of weight:
 1. **It is the only candidate that returns `bid` and `ask` in one flat object.** `mid`
    can be computed as `(bid + ask) / 2` with no second request and no array walking.
 2. **It is the only candidate that sends `access-control-allow-origin: *`.** Verified
-   by sending `Origin: chrome-extension://…` (see CORS section). This means the fetch
-   works from a content script *or* a service worker, so `background/price.ts` stays a
-   design choice rather than a hard requirement (cross-check `research/mv3-notes.md` R5).
+   by sending `Origin: chrome-extension://…` (see CORS section). This makes the response
+   readable from any origin, which removes a whole class of failure. It does **not** mean
+   we may fetch from the content script — R5 settles that we must not; see
+   `research/mv3-notes.md` §3.
 3. Unauthenticated, 200, no API key, no `CB-ACCESS-*` headers.
 4. 10 req/s per IP (burst 15) is far above what a 2s-cached, one-badge-at-a-time
    extension will use.
@@ -106,8 +107,11 @@ Verified live on 2026-09-07 with `curl -D - -H "Origin: chrome-extension://<id>"
 `api.exchange.coinbase.com` also advertises
 `access-control-allow-methods: GET,POST,DELETE,PUT` and `access-control-max-age: 7200`.
 
-Either way the extension should declare the host in `host_permissions`; with the host
-granted, Chrome exempts extension-origin fetches from CORS entirely (see R5).
+Either way the extension must declare the host in `host_permissions` and must issue the
+fetch from the **service worker**, not from the content script. Chrome's docs are explicit
+that `host_permissions` does not exempt a content script from the same-origin policy;
+`background/price.ts` is therefore required, not optional. Full quotes in
+`research/mv3-notes.md` §3.
 
 ## Rate limits
 
