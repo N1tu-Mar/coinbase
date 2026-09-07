@@ -2,7 +2,7 @@
 
 - [x] R1 endpoints.md + captures/        DONE  api.exchange.coinbase.com/products/{id}/ticker recommended; bid+ask are strings; ACAO `*`
 - [ ] R2 fees.md + fees.json             BLOCKED  all official Coinbase fee pages return Cloudflare 403; no browser available. fees.json NOT written. See research/fees.md for 3 unblock paths.
-- [ ] R3 dom/ + selectors.md             NOT STARTED (needs human capture — see 3.3)
+- [ ] R3 dom/ + selectors.md             WAITING ON HUMAN  instructions written to research/dom/HOW_TO_CAPTURE.md. selectors.md cannot be written until the 3 scrubbed HTML captures exist. Blocks build P3.
 - [~] R4 deeplinks.md                    PARTIAL  /advanced-trade/spot and exchange.coinbase.com/trade/{id} confirmed; per-pair /advanced-trade/spot/{id} needs a 30s browser check (Cloudflare 403s every path to curl).
 - [x] R5 mv3-notes.md                    DONE  host_permissions https://api.exchange.coinbase.com/*; matches https://www.coinbase.com/*; content scripts CANNOT fetch cross-origin, so background/price.ts is REQUIRED; SW dies after 30s idle so the 2s Map cache is correct.
 
